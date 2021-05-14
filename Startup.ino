@@ -16,10 +16,10 @@ void Startup()
   
   Serial.println("Searching for Satellites ");
       
-  while (Number_of_SATS <= 4)                         // Wait until x number of satellites are acquired before starting main loop
+  while (Number_of_SATS <= 4)                        // Wait until x number of satellites are acquired before starting main loop******************DURUMA GÖRE 3 SAT KULLLAN
   {                                  
    getGPS();                                         // Update gps data
-   Number_of_SATS = fix.satellites;               // Check the number of Satellites Acquired       
+   Number_of_SATS = fix.satellites;                  // Check the number of Satellites Acquired       
    bluetooth();                                      // Check to see if there are any bluetooth commands being received     
   }
   

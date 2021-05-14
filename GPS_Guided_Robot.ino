@@ -3,14 +3,25 @@
 #include <NMEAGPS.h>
 #include <GPSport.h>
                       
+//******************************************************************************************************  
+// GPS Locations
+int ac =0;                                                         // GPS array counter
+int wpCount = 0;                                                   // GPS waypoint counter
+double Home_LATarray[50];                                          // variable for storing the destination Latitude - Only Programmed for 50 waypoint
+double Home_LONarray[50];                                          // variable for storing the destination Longitude - up to 50 waypoints
+
+
+int increment = 0;
 //******************************************************************************************************                                                                  
 // GPS Variables & Setup
 
 double lat,lon;
-int GPS_Course;                                                  // variable to hold the gps's determined course to destination
 int Number_of_SATS;                                                // variable to hold the number of satellites acquired
+float bearing;
+float distance;
 NMEAGPS  gps;
-gps_fix  fix;                                                      // gps = instance of NEOGPS 
+gps_fix  fix;                                                      // gps = instance of NEOGPS
+NeoGPS::Location_t to_waypoint(Home_LATarray[ac], Home_LONarray[ac]); 
                                                                    // pin 18 is connected to the TX on the GPS
                                                                    // pin 19 is connected to the RX on the GPS
 
@@ -30,10 +41,9 @@ int set_pwm = 200;                                               // motor pwm wh
 
 QMC5883L compass;                                                  // QMC5883L compass
 int compass_heading;
-//int16_t mx, my, mz;                                                // variables to store x,y,z axis from compass (HMC5883L)
 int desired_heading;                                               // initialize variable - stores value for the new desired heading                                             
 int compass_dev = 5;                                               // the amount of deviation that is allowed in the compass heading - Adjust as Needed
-int heading = 0;                                                                   // setting this variable too low will cause the robot to continuously pivot left and right
+int heading = 0;                                                   // setting this variable too low will cause the robot to continuously pivot left and right*****************************
                                                                    // setting this variable too high will cause the robot to veer off course
 
 //******************************************************************************************************
@@ -58,22 +68,12 @@ int blueToothVal;                                                  // stores the
 int bt_Pin = 34;                                                   // Pin 34 of the Aruino Mega used to test the Bluetooth connection status - Not Used
 
 //*****************************************************************************************************
-// GPS Locations
 
-unsigned long Distance_To_Home;                                    // variable for storing the distance to destination
-
-int ac =0;                                                         // GPS array counter
-int wpCount = 0;                                                   // GPS waypoint counter
-double Home_LATarray[50];                                          // variable for storing the destination Latitude - Only Programmed for 50 waypoint
-double Home_LONarray[50];                                          // variable for storing the destination Longitude - up to 50 waypoints
-
-
-int increment = 0;
 
 void setup() 
 {  
   Serial.begin(9600);                                           
-  gpsPort.begin( 9600 );
+  gpsPort.begin(9600);
   
   while (!Serial)
     ;
@@ -92,6 +92,13 @@ void setup()
   compass.setRange(8);
 
   Startup();                                                       // Run the Startup procedure on power-up one time
+
+  //*****************************
+  Home_LATarray[1]=40692902;
+  Home_LONarray[1]=29833365;
+  Home_LATarray[2]=40692675;
+  Home_LONarray[2]=29833243;
+  //*****************************
 }
 
 //********************************************************************************************************
@@ -100,9 +107,9 @@ void setup()
 void loop()
 { 
   
-  bluetooth();                                                     // Run the Bluetooth procedure to see if there is any data being sent via BT                                                    
+  //bluetooth();                                                     // Run the Bluetooth procedure to see if there is any data being sent via BT                                                    
   getGPS();                                                        // Update the GPS location
   getCompass();                                                    // Update the Compass Heading
   //Ping();                                                        //*************************************** Collision Detection will have something to do with this. check later
-
+  goWaypoint();
 }

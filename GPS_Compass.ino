@@ -1,7 +1,7 @@
 void getGPS()                                                 // Get Latest GPS coordinates
 {
    while (gps.available( gpsPort )) {
-   fix = gps.read();
+   if (fix.valid.location) {fix = gps.read();}
    }
 } 
 
