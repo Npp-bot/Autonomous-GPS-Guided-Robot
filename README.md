@@ -7,4 +7,7 @@ It's currently using; NEO M8N for location tracking,
 It currently lacks any way to set waypoints, communicate with outside to get the location information of outer edges of the area, and a way to avoid objects.
 Currents plans are to use ultrasonic for object avoidance.
 
-Warning: This is the main branch of the project. Do not push commits here.
+Warning: This is a test branch of the project. You push commits here.
+
+Algorithm
+https://www.eecs.umich.edu/courses/eecs380/HANDOUTS/PROJ2/InsidePoly.html
