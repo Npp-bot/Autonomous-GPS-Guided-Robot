@@ -6,3 +6,5 @@ It's currently using; NEO M8N for location tracking,
                       an arduino mega to run the code.
 It currently lacks any way to set waypoints, communicate with outside to get the location information of outer edges of the area, and a way to avoid objects.
 Currents plans are to use ultrasonic for object avoidance.
+
+Warning: This is the test branch of the project. You can push commits here. 
