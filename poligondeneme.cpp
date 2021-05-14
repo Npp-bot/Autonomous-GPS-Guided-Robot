@@ -50,15 +50,8 @@ int InsidePolygon(Point *polygon,int N,Point p)
 int main(){
 	int N = 5;
 	Point noktam={1.563,1.973};
-	Point poligonum[]={(0,0),(1,3),(4,3),(2,2),(5,2)};
+	Point poligonum[]={{0,0},{1,3},{4,3},{2,2},{5,2}};
 	
 	InsidePolygon(poligonum,N,noktam);
 	
 }
-
-
-
-
-
-
-
