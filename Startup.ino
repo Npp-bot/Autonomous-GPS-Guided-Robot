@@ -30,13 +30,11 @@ void Startup()
   ac = 0;                                             // zero array counter
 
 
-
-  int inc = 0;
   Pointing();
+  
+  int inc = 0;
   for (inc = 0; inc < N + 1; inc++) {
-
     InsidePolygon(*noktalar, N, kare[inc], inc);
-
   }
 
   Serial.print(Number_of_SATS);
