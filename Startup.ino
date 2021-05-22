@@ -29,11 +29,13 @@ void Startup()
   wpCount = 0;                                        // zero waypoint counter
   ac = 0;                                             // zero array counter
 
-  int inc = 0;
 
+
+  int inc = 0;
+  Pointing();
   for (inc = 0; inc < N + 1; inc++) {
 
-InsidePolygon(*noktalar, N, kare[inc], inc);
+    InsidePolygon(*noktalar, N, kare[inc], inc);
 
   }
 
