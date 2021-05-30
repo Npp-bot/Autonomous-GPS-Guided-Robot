@@ -13,9 +13,9 @@ void setWaypoint()                                            // Set up to 5 GPS
 //if ((wpCount >= 0) && (wpCount < 50))
 if (wpCount >= 0)                                            //Set the current location as a waypoint at the start. probably used to determine how to get to the real first waypoint
   {
-    Serial1.print("GPS Waypoint ");
-    Serial1.print(wpCount + 1);
-    Serial1.print(" Set ");
+    Serial.print("GPS Waypoint ");
+    Serial.print(wpCount + 1);
+    Serial.print(" Set ");
     getGPS();                                                 // get the latest GPS coordinates
     getCompass();                                             // update latest compass heading     
                                                
@@ -47,7 +47,7 @@ if (wpCount >= 0)                                            //Set the current l
     ac++;                                                       // increment array counter
         
   }         
-  else {Serial1.print("Waypoints Full");}
+  else {Serial.print("Waypoints Full");}
 }
 
 // ************************************************************************************************************************************************* 
@@ -59,18 +59,20 @@ void clearWaypoints()
    wpCount = 0;                                                 // reset increment counter to 0
    ac = 0;
    
-   Serial1.print("GPS Waypoints Cleared");                      // display waypoints cleared
+   Serial.print("GPS Waypoints Cleared");                      // display waypoints cleared
   
 }
 
  // *************************************************************************************************************************************************
  
 void getCompass()                                               // get latest compass value
- {    
+{    
      
     for (int i=0; i <= 5; i++)                                    // Take several readings from the compass to insure accuracy
       { 
         compass_heading += compass.readHeading();                                          
       }
-     compass_heading = compass_heading/6;        //******6ya kadar saymıyorsa 5e böl. şuan c'yi unuttum                                                                                                
- }
+     compass_heading = compass_heading/6;        //******6ya kadar saymıyorsa 5e böl. şuan c'yi unuttum
+//     Serial.println("heading :");
+//     Serial.print(compass_heading);                                                                                                
+}

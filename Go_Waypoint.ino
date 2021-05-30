@@ -21,10 +21,19 @@ void goWaypoint()
   getGPS();                                                        // Function to retrieves GPS data 
   
  
-  
-      distance = fix.location.DistanceKm(to_waypoint)*1000;
-      bearing = fix.location.BearingToDegrees(to_waypoint);   
-   
+      //NeoGPS::Location_t to_waypoint(Home_LATarray[50], Home_LONarray[50]); 
+      //distance = fix.location.DistanceKm(to_waypoint)*1000; // haversine
+      //bearing = fix.location.BearingToDegrees(to_waypoint);   
+      Serial.print("distance :");
+      Serial.println(distance);
+              
+      Serial.print("bearing :");
+      Serial.println(bearing);
+            
+      Serial.print("compassg :");
+      Serial.println(compass_heading);
+       
+      
     if (distance == 0)                                           // If the Vehicle has reached it's Destination, then Stop
         {
         StopCar();                                               // Stop the robot after each waypoint is reached

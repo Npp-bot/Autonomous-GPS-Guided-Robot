@@ -83,7 +83,7 @@ void CompassTurnRight()                                                         
       {                                                                          // correct direction by turning left or right
 
     getCompass();                                                                // Update compass heading during While Loop
-    bluetooth();                                                                 // if new bluetooth value received break from loop        
+    //bluetooth();                                                                 // if new bluetooth value received break from loop        
     if (blueToothVal == 5){break;}                                               // If a Stop Bluetooth command ('5') is received then break from the Loop
         
     if (desired_heading >= 360) {desired_heading = (desired_heading - 360);}     // if the desired heading is greater than 360 then subtract 360 from it                                            
@@ -120,7 +120,7 @@ void CompassTurnLeft()                                                          
   while ( abs(desired_heading - compass_heading) >= compass_dev)                 // If the desired heading is more than Compass Deviation in degrees from the actual compass heading then
       {                                                                          // correct direction by turning left or right
     getCompass();                                                                // Get compass heading again during While Loop
-    bluetooth();                                                                 // if new bluetooth value received break from loop              
+    //bluetooth();                                                                 // if new bluetooth value received break from loop              
     if (blueToothVal == 5){break;}                                               // If a 'Stop' Bluetooth command is received then break from the Loop
     
     if (desired_heading >= 360) {desired_heading = (desired_heading - 360);}     // if the desired heading is greater than 360 then subtract 360 from it                                            
