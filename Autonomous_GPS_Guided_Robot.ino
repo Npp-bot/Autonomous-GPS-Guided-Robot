@@ -11,14 +11,11 @@ typedef struct {
   double x, y;
 } Point;                      
 //******************************************************************************************************  
-// GPS Locations
-int ac =0;                                                          
-int wpCount = 0;                                                    
+// GPS Locations                                                                                                         
 double Latarray[50];                                                
 double Lonarray[50];                                                
-
-
-int increment = 0;
+int inc = 1;
+int ac =0;    
 //******************************************************************************************************                                                                  
 // GPS Variables & Setup
 
@@ -65,14 +62,6 @@ int compass_counter=0;
 //const long interval = 200;                                         // Ping the Distance every X miliseconds
  
 //******************************************************************************************************
-// Bluetooth Variables & Setup    *********************GRUPLA İLETİŞİMİ KONUŞUP BURAYA ÖYLE BAK, NOKTALARI GÖNDERİRKEN BLUE. KULLANILMAYACAKSA SİL
-
-String str;                                                        // raw string received from android to arduino
-int blueToothVal;                                                  // stores the last value sent over via bluetooth
-int bt_Pin = 34;                                                   // Pin 34 of the Aruino Mega used to test the Bluetooth connection status - Not Used
-
-//*****************************************************************************************************
-//******************************************************************************************************
 // Bluetooth Variables & Setup
 
 String veri;
@@ -94,27 +83,20 @@ Point noktalar[5];
 
 //*****************************************************************************************************
 //Pointing Variables & Setup
-int i;
-int a;
-int j;
-int k;
-int c=0;
+
 
 double xmin;
 double xmax;
 double ymin;
 double ymax;
-// duruma göre kare dizisinin defaultu güncellenebilir
 Point alan[5];
-Point kare[1000];
+Point kare[200];
 //polygon_ defaultu değişebilir.
 Point polygon_[250];
-//Point solu,sagu,sola,saga;
-
 #define INSIDE 0
 #define OUTSIDE 1
 
-int N=250;
+int N=200;
 
 //*****************************************************************************************************
 void setup() 
@@ -126,7 +108,7 @@ void setup()
   while (!Serial)
     ;
 
-  // Compass
+  // Compass I2C Connection
   Wire.begin();
 
   compass.init();
@@ -135,20 +117,14 @@ void setup()
   compass.setRange(8);
 
   Startup();                                                       // Run the Startup procedure on power-up one time
-
- 
 }
 
-//********************************************************************************************************
-// Main Loop
 
+// Main Loop
 void loop()
-{ 
-  
-  //bluetooth();                                                     // Run the Bluetooth procedure to see if there is any data being sent via BT                                                    
+{                                                                                                  
   getGPS();                                                        // Update the GPS location
   getCompass();                                                    // Update the Compass Heading
   //Ping();                                                        //*************************************** Collision Detection will have something to do with this. check later
-  goWaypoint();
-  
+  goWaypoint();  
 }

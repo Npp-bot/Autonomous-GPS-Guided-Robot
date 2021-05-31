@@ -24,11 +24,12 @@ void InsidePolygon(Point *polygon, int N, Point p, int inc)
 
   if (counter % 2 == 0) {
 
-    printf("outside");
+    Serial.print("outside");
   }
   else {
-  polygon_[inc].x=p.x;
-  polygon_[inc].y=p.y;
-    printf("inside");
+  Latarray[inc]=p.x;
+  Lonarray[inc]=p.y;
+    Serial.println(inc);
+    Serial.print("inside");
   }
 }

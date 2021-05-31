@@ -1,8 +1,7 @@
-///**************************************************************************************************************************************************
-// This procedure reads the serial port - Serial1 - for bluetooth commands being sent from the Android device
+// Using Serial2 to receive outer edges via bluetooth
 void bluetooth()
 {
- while (Serial2.available())
+ while (Serial2.available() && (noktalar[4].y!=0) )
   {
     veri = Serial2.readStringUntil('\n');
 
@@ -35,6 +34,17 @@ void bluetooth()
     noktalar[3].y = pp4.substring(v + 1).toInt();
     noktalar[4].x = pp5.substring(0, v).toInt();
     noktalar[4].y = pp5.substring(v + 1).toInt();
+    
+    noktalar[0].x = (noktalar[0].x/10000000)+40;
+    noktalar[0].y = (noktalar[0].y/10000000)+29;
+    noktalar[1].x = (noktalar[1].x/10000000)+40;
+    noktalar[1].y = (noktalar[1].x/10000000)+29;
+    noktalar[2].x = (noktalar[2].x/10000000)+40;
+    noktalar[2].y = (noktalar[2].x/10000000)+29;
+    noktalar[3].x = (noktalar[3].x/10000000)+40;
+    noktalar[3].y = (noktalar[3].x/10000000)+29;
+    noktalar[4].x = (noktalar[4].x/10000000)+40;
+    noktalar[4].y = (noktalar[4].x/10000000)+29;
     
 //    Serial.println(noktalar[0].x, 7);
 //    Serial.println(noktalar[0].y, 7);

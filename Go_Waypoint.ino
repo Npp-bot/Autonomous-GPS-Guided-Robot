@@ -1,4 +1,3 @@
-
 void goWaypoint()
 {
   while (true)
