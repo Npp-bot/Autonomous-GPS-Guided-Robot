@@ -1,7 +1,7 @@
 
 void Forward()
 {
-  Ping(); //********Önünü mü kontrol ediyor?
+  //Ping(); //********Önünü mü kontrol ediyor?
   analogWrite(M1_Backward, 0);
   analogWrite(M2_Backward, 0);
   delay(1);

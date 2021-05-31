@@ -7,60 +7,47 @@ void getGPS()                                                 // Get Latest GPS 
 
 // *************************************************************************************************************************************************
  
-void setWaypoint()                                            // Set up to 5 GPS waypoints
+void setWaypoint()                                           
 {
 
 //if ((wpCount >= 0) && (wpCount < 50))
-if (wpCount >= 0)                                            //Set the current location as a waypoint at the start. probably used to determine how to get to the real first waypoint
+if (wpCount >= 0)                                            
   {
     Serial.print("GPS Waypoint ");
     Serial.print(wpCount + 1);
     Serial.print(" Set ");
-    getGPS();                                                 // get the latest GPS coordinates
-    getCompass();                                             // update latest compass heading     
+    getGPS();                                                 
+    getCompass();                                              
                                                
-    Home_LATarray[ac] = fix.latitude();                   // store waypoint in an array   
-    Home_LONarray[ac] = fix.longitude();                   // store waypoint in an array   
+    Latarray[ac] = fix.latitude();                     
+    Lonarray[ac] = fix.longitude();                    
                                                               
     Serial.print("Waypoint #1: ");
-    Serial.print(Home_LATarray[0],6);
+    Serial.print(Latarray[0],6);
     Serial.print(" ");
-    Serial.println(Home_LONarray[0],6);
+    Serial.println(Lonarray[0],6);
     Serial.print("Waypoint #2: ");
-    Serial.print(Home_LATarray[1],6);
+    Serial.print(Latarray[1],6);
     Serial.print(" ");
-    Serial.println(Home_LONarray[1],6);
+    Serial.println(Lonarray[1],6);
     Serial.print("Waypoint #3: ");
-    Serial.print(Home_LATarray[2],6);
+    Serial.print(Latarray[2],6);
     Serial.print(" ");
-    Serial.println(Home_LONarray[2],6);
+    Serial.println(Lonarray[2],6);
     Serial.print("Waypoint #4: ");
-    Serial.print(Home_LATarray[3],6);
+    Serial.print(Latarray[3],6);
     Serial.print(" ");
-    Serial.println(Home_LONarray[3],6);
+    Serial.println(Lonarray[3],6);
     Serial.print("Waypoint #5: ");
-    Serial.print(Home_LATarray[4],6);
+    Serial.print(Latarray[4],6);
     Serial.print(" ");
-    Serial.println(Home_LONarray[4],6);
+    Serial.println(Lonarray[4],6);
 
     wpCount++;                                                  // increment waypoint counter
     ac++;                                                       // increment array counter
         
   }         
   else {Serial.print("Waypoints Full");}
-}
-
-// ************************************************************************************************************************************************* 
-
-void clearWaypoints()
-{
-   memset(Home_LATarray, 0, sizeof(Home_LATarray));             // clear the array
-   memset(Home_LONarray, 0, sizeof(Home_LONarray));             // clear the array
-   wpCount = 0;                                                 // reset increment counter to 0
-   ac = 0;
-   
-   Serial.print("GPS Waypoints Cleared");                      // display waypoints cleared
-  
 }
 
  // *************************************************************************************************************************************************
