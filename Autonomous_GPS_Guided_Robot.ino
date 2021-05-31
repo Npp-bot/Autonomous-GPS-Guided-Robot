@@ -3,13 +3,19 @@
 #include <NMEAGPS.h>
 using namespace NeoGPS;
 #include <GPSport.h>
-                      
+//******************************************************************************************************
+#define MIN(x,y) (x < y ? x : y)   //max min functions
+#define MAX(x,y) (x > y ? x : y)
+
+typedef struct {
+  double x, y;
+} Point;                      
 //******************************************************************************************************  
 // GPS Locations
-int ac =0;                                                         // GPS array counter
-int wpCount = 0;                                                   // GPS waypoint counter
-double Latarray[50];                                          // variable for storing the destination Latitude - Only Programmed for 50 waypoint
-double Lonarray[50];                                          // variable for storing the destination Longitude - up to 50 waypoints
+int ac =0;                                                          
+int wpCount = 0;                                                    
+double Latarray[50];                                                
+double Lonarray[50];                                                
 
 
 int increment = 0;
@@ -40,8 +46,8 @@ int set_pwm = 200;                                               // motor pwm wh
 QMC5883L compass;                                                  // QMC5883L compass
 int compass_heading;
 int desired_heading;                                               // initialize variable - stores value for the new desired heading                                             
-int compass_dev = 5;                                               // the amount of deviation that is allowed in the compass heading - Adjust as Needed
-int heading = 0;                                                   // setting this variable too low will cause the robot to continuously pivot left and right*****************************
+int compass_dev = 5;                                               // the amount of deviation that is allowed in the compass heading 
+int heading = 0;                                                   
 int compass_counter=0;                                                                 
 
 //******************************************************************************************************
@@ -66,8 +72,51 @@ int blueToothVal;                                                  // stores the
 int bt_Pin = 34;                                                   // Pin 34 of the Aruino Mega used to test the Bluetooth connection status - Not Used
 
 //*****************************************************************************************************
+//******************************************************************************************************
+// Bluetooth Variables & Setup
 
+String veri;
+int v1;
+int v2;
+int v3;
+int v4;
+int v5;
 
+int v;
+
+String pp1;
+String pp2;
+String pp3;
+String pp4;
+String pp5;
+
+Point noktalar[5];
+
+//*****************************************************************************************************
+//Pointing Variables & Setup
+int i;
+int a;
+int j;
+int k;
+int c=0;
+
+double xmin;
+double xmax;
+double ymin;
+double ymax;
+// duruma göre kare dizisinin defaultu güncellenebilir
+Point alan[5];
+Point kare[1000];
+//polygon_ defaultu değişebilir.
+Point polygon_[250];
+//Point solu,sagu,sola,saga;
+
+#define INSIDE 0
+#define OUTSIDE 1
+
+int N=250;
+
+//*****************************************************************************************************
 void setup() 
 {  
   Serial.begin(9600);

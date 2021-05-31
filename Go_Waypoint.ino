@@ -10,7 +10,7 @@ void goWaypoint()
     double lat_dest = Latarray[ac];
     double lng_dest = Lonarray[ac];
     //************************************************                                                        
-    Location_t p1(fix.latitude(), fix.longitude());         //Code piece to assign the inputs for the BearingTo function
+    Location_t p1(lat, lng);                                //Code piece to assign the inputs for the BearingTo function
     Location_t p2(lat_dest, lng_dest);                    
     float bearing = BearingTo(p1,p2);
     //*************************************************
