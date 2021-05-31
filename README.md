@@ -9,5 +9,5 @@ Currents plans are to use ultrasonic for object avoidance.
 
 Warning: This is a test branch of the project. You push commits here.
 
-Algorithm
+Inside Poly Algorithm
 https://www.eecs.umich.edu/courses/eecs380/HANDOUTS/PROJ2/InsidePoly.html
