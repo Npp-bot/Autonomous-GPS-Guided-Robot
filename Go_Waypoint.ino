@@ -1,7 +1,8 @@
 void goWaypoint()
 {
   while (true)
-  {                         
+  { 
+    Ping;                        
     getCompass();                                                    
     getGPS();
     double lat = fix.latitude();

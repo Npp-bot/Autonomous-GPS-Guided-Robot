@@ -1,47 +1,39 @@
-/*
 void Ping()
 { 
-  currentMillis = millis();
-  
- if ((currentMillis - previousMillis >= interval) && (pingOn == true)) 
- {
-  previousMillis = currentMillis;
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(5);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
 
-  pinMode(echoPin, INPUT);
-  duration = pulseIn(echoPin, HIGH);
-  
-  int inches = (duration / 2) / 74;                       // convert the time into a distance
-  Ping_distance == inches;  
+Ping_distance1 = us1.dist(); // sol ön
+Ping_distance2 = us2.dist(); // orta ön
+Ping_distance3 = us3.dist(); // sag ön
+Ping_distance4 = us4.dist(); // sol arka
+Ping_distance5 = us5.dist(); // sag arka
+
  
-    if ((inches < 12) && (blueToothVal != 5))
+    if (Ping_distance1 <= 20 || Ping_distance2 <= 20 || Ping_distance3 <= 20)
       {
-        Serial1.print("Crash! ");
-        Serial1.println(inches);
         Reverse();                                        // Quick reverse to Stop quickly
         delay(100);
-        StopCar();   
-        blueToothVal = 5;                                 // Set bluetooth value to "Stop"
+        StopCar();
+        avoid();
       } 
-  
-  }       // end if statement
- 
-}         // end Ping()
-
-void pingToggle()                                         // Turns Collision avoidance on/ off
- {
-  if (pingOn == true) {
-    pingOn = false;
-    Serial1.print("Collision Avoidance OFF");
   }
-    else if (pingOn == false) {
-    pingOn = true;
-    Serial1.print("Collision Avoidance ON");
-  }  
- }
- */
- 
+
+void avoid()
+{
+  while(true){
+    if(Ping_distance4 < Ping_distance5){
+      CompassTurnRight();
+      Forward_Meter();
+      break;
+      }
+    else if(Ping_distance4 > Ping_distance5){
+      CompassTurnLeft();
+      Forward_Meter();
+      break;
+      }
+      else{
+      CompassTurnLeft();
+      Forward_Meter();
+      break;
+        }
+    }
+  }

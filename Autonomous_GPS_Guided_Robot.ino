@@ -3,6 +3,7 @@
 #include <NMEAGPS.h>
 using namespace NeoGPS;
 #include <GPSport.h>
+#include <HCSR04.h>
 //******************************************************************************************************
 #define MIN(x,y) (x < y ? x : y)   //max min functions
 #define MAX(x,y) (x > y ? x : y)
@@ -46,18 +47,30 @@ int heading = 0;
 int compass_counter=0;                                                                 
 
 //******************************************************************************************************
-//// Ping Sensor for Collision Avoidance  ***************BURAYA SONRA BAKILACAK
-//
-//boolean pingOn = false;                                            // Turn Collision detection On or Off
-//
-//int trigPin = 43;                                                  // Trig - Orange
-//int echoPin = 42;                                                  // Echo - Yellow
-//long duration, inches;
-//int Ping_distance;
-//
-//unsigned long currentMillis = 0;
-//unsigned long previousMillis = 0;                                  // Store last time Ping was updated
-//const long interval = 200;                                         // Ping the Distance every X miliseconds
+// Ping Sensor for Collision Avoidance
+
+int trigPin1 = 31;
+int echoPin1 = A0;
+int trigPin2 = 33;
+int echoPin2 = A1;
+int trigPin3 = 35;
+int echoPin3 = A2;
+int trigPin4 = 37;
+int echoPin4 = A3;
+int trigPin5 = 39;
+int echoPin5 = A4;
+
+HCSR04 us1(trigPin1,echoPin1);
+HCSR04 us2(trigPin2,echoPin2);
+HCSR04 us3(trigPin3,echoPin3);
+HCSR04 us4(trigPin4,echoPin4);
+HCSR04 us5(trigPin5,echoPin5);
+
+int Ping_distance1;
+int Ping_distance2;
+int Ping_distance3;
+int Ping_distance4;
+int Ping_distance5;
  
 //******************************************************************************************************
 // Bluetooth Variables & Setup
@@ -119,6 +132,6 @@ void loop()
 {                                                                                                  
   getGPS();                                                        // Update GPS location
   getCompass();                                                    // Update heading
-  //Ping();                                                        
+  Ping();                                                        
   goWaypoint();  
 }
