@@ -18,9 +18,8 @@ int inc = 1;
 int ac =0;    
 //******************************************************************************************************                                                                  
 // GPS Variables & Setup
-
 double lat,lon;
-int Number_of_SATS;                                               
+//int Number_of_SATS;                                             //Unused.                               
 float bearing;
 float distance;
 NMEAGPS  gps;
@@ -39,7 +38,6 @@ int set_pwm = 200;                                               // motor pwm wh
 
 //******************************************************************************************************
 // Compass Variables & Setup
-
 QMC5883L compass;                                                  // QMC5883L compass
 int compass_heading;
 int desired_heading;                                               // initialize variable - stores value for the new desired heading                                             
@@ -63,7 +61,6 @@ int compass_counter=0;
  
 //******************************************************************************************************
 // Bluetooth Variables & Setup
-
 String veri;
 int v1;
 int v2;
@@ -83,16 +80,13 @@ Point noktalar[5];
 
 //*****************************************************************************************************
 //Pointing Variables & Setup
-
-
 double xmin;
 double xmax;
 double ymin;
 double ymax;
 Point alan[5];
-Point kare[200];
-//polygon_ defaultu değişebilir.
-Point polygon_[250];
+Point kare[200];                              //Default array size is 200. Value can be increased according to the size of the operation. 
+Point polygon_[200];                          //Be careful about reserved memory size to not exceed max memory.
 #define INSIDE 0
 #define OUTSIDE 1
 
@@ -116,15 +110,15 @@ void setup()
   compass.setOversampling(256);
   compass.setRange(8);
 
-  Startup();                                                       // Run the Startup procedure on power-up one time
+  Startup();                                                       // Run the startup process once
 }
 
 
 // Main Loop
 void loop()
 {                                                                                                  
-  getGPS();                                                        // Update the GPS location
-  getCompass();                                                    // Update the Compass Heading
-  //Ping();                                                        //*************************************** Collision Detection will have something to do with this. check later
+  getGPS();                                                        // Update GPS location
+  getCompass();                                                    // Update heading
+  //Ping();                                                        
   goWaypoint();  
 }
